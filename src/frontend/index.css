@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Arvis "Serenity" Font Faces ─────────────────────────────────────── */
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 900;
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 800;
+}
+
+/* ─── Arvis "Serenity" Design Tokens ──────────────────────────────────── */
+@layer base {
+  :root {
+    /* Radius */
+    --radius: 1rem;
+
+    /* Background gradient — very light airy blue */
+    --background: 0.975 0.012 232;
+    --foreground: 0.13 0.03 255;
+
+    /* Card — pure white */
+    --card: 1 0 0;
+    --card-foreground: 0.13 0.03 255;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.13 0.03 255;
+
+    /* Primary — Deep Navy #0D1B4B */
+    --primary: 0.23 0.07 264;
+    --primary-foreground: 0.98 0 0;
+
+    /* Secondary — soft sky blue tint */
+    --secondary: 0.93 0.025 220;
+    --secondary-foreground: 0.23 0.07 264;
+
+    /* Muted */
+    --muted: 0.94 0.01 220;
+    --muted-foreground: 0.55 0.02 240;
+
+    /* Accent — soft warm pink #FF4081 */
+    --accent: 0.62 0.22 350;
+    --accent-foreground: 0.98 0 0;
+
+    /* Destructive */
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    /* Border & input */
+    --border: 0.9 0.015 220;
+    --input: 0.9 0.015 220;
+    --ring: 0.62 0.22 350;
+
+    /* Charts */
+    --chart-1: 0.62 0.22 350;
+    --chart-2: 0.67 0.15 220;
+    --chart-3: 0.4 0.08 240;
+    --chart-4: 0.83 0.15 84;
+    --chart-5: 0.77 0.19 70;
+
+    /* Sidebar (matches nav bar) */
+    --sidebar: 1 0 0;
+    --sidebar-foreground: 0.13 0.03 255;
+    --sidebar-primary: 0.62 0.22 350;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.93 0.025 220;
+    --sidebar-accent-foreground: 0.23 0.07 264;
+    --sidebar-border: 0.9 0.015 220;
+    --sidebar-ring: 0.62 0.22 350;
+
+    /* Custom Arvis tokens */
+    --arvis-pink: 0.62 0.22 350;
+    --arvis-navy: 0.23 0.07 264;
+    --arvis-sky: 0.72 0.1 220;
+    --arvis-sky-light: 0.93 0.04 220;
+    --arvis-inactive: 0.73 0.02 230;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    font-family: "Figtree", "Plus Jakarta Sans", sans-serif;
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3 {
+    font-family: "Plus Jakarta Sans", "Figtree", sans-serif;
+    font-weight: 700;
+  }
+}
+
+/* ─── App gradient background ────────────────────────────────────────── */
+.arvis-bg {
+  background: linear-gradient(160deg, #EEF6FF 0%, #F0F8FF 50%, #E8F4FF 100%);
+  min-height: 100dvh;
+}
+
+/* ─── Radar sweep animation ──────────────────────────────────────────── */
+@keyframes radar-sweep {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.radar-sweep {
+  animation: radar-sweep 2.5s linear infinite;
+}
+
+/* ─── Pulse ring animation ───────────────────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  100% { transform: scale(1.7); opacity: 0;   }
+}
+.pulse-ring {
+  animation: pulse-ring 1.6s ease-out infinite;
+}
+
+/* ─── Dot glow bob animation ─────────────────────────────────────────── */
+@keyframes dot-orbit {
+  from { transform: rotate(var(--start-angle, 0deg)) translateX(var(--orbit-r, 80px)) rotate(calc(-1 * var(--start-angle, 0deg))); }
+  to   { transform: rotate(calc(var(--start-angle, 0deg) + 360deg)) translateX(var(--orbit-r, 80px)) rotate(calc(-360deg - var(--start-angle, 0deg))); }
+}
+.dot-orbit {
+  animation: dot-orbit 4s linear infinite;
+}
+
+/* ─── Glassmorphism radar container ──────────────────────────────────── */
+.radar-glass {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+}
+
+/* ─── Smooth tab/page transition ─────────────────────────────────────── */
+@keyframes fade-slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+.page-enter {
+  animation: fade-slide-up 0.3s ease both;
+}
+
+/* ─── Battery gradient bar ───────────────────────────────────────────── */
+.battery-bar {
+  background: linear-gradient(90deg, #5BC8F5 0%, #FF4081 100%);
+  border-radius: 9999px;
+}
+
+/* ─── Alert card left border ─────────────────────────────────────────── */
+.alert-drift { border-left: 4px solid #FF4081; }
+.alert-out   { border-left: 4px solid #FF4081; }
+.alert-back  { border-left: 4px solid #22c55e; }
+
+/* ─── Bottom nav active icon color ──────────────────────────────────── */
+.nav-active   { color: #0D1B4B; }
+.nav-inactive { color: #B0B8C1; }
+
+/* ─── Scan button pulse ──────────────────────────────────────────────── */
+@keyframes scan-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(255,64,129,0.5); }
+  70%  { box-shadow: 0 0 0 14px rgba(255,64,129,0); }
+  100% { box-shadow: 0 0 0 0   rgba(255,64,129,0); }
+}
+.scan-pulsing {
+  animation: scan-pulse 1.4s ease-out infinite;
+}
